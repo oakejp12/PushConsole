@@ -1,3 +1,7 @@
+/*
+* @author Johan Oakes
+* Application to send message from phone by way of console
+*/
 
 const PUSHBULLET_API =  'https://api.pushbullet.com/v2/';
 const request = require('request');

@@ -8,12 +8,11 @@ const config = require('./config');
 
 /*
 * Constructs a new instance of the Pushbullet Client
-
 * @constructor
 * @this {Pushbullet Client}
 */
 function PushbulletClient() {
-  var _this = this;
+  const _this = this;
 
   // The current profile's user id
   _this.userID = null;
@@ -41,12 +40,13 @@ function PushbulletClient() {
   /*
   * Issues a GET request to the Pushbullet API
   * @param {String} path the relative URI path
+  * @param {String} method GET, POST, PUT, etc.
   * @param {Object} data an object of extra values
   * @param {Function} callback the callback to invoke when the req completes
   */
-  var bulletGet = function(path, data, callback) {
+  var bulletMethod = function(path, method, data, callback) {
     var opts = getRequestOptions(path, data);
-    opts.method = 'GET';
+    opts.method = method;
     request(opts, callback);
   };
 
@@ -62,7 +62,6 @@ function PushbulletClient() {
         if (typeof body === "string") {
           try {
             data = JSON.parse(body);
-            // console.dir(data);
           } catch (err) {
             // TODO : Catch the error
           }
@@ -77,11 +76,28 @@ function PushbulletClient() {
 
   /*
   * Gets the current users
-  *
-  *
+  * @param {Object} data
+  * @param {Function} callback
   */
   _this.getUser = function(data, callback) {
-    bulletGet('users/me', data, makeBulletCallback((err, data) => console.dir(data)));
+    bulletMethod('users/me', 'GET', data, makeBulletCallback((err, data) => console.dir(data)));
+  };
+
+  /*
+  * Get a list of chats belonging to the current user
+  * @param {Object} data
+  * @param {Function} callback callback to invoke when req completes
+  */
+  _this.getDevicesList = function(data, callback) {
+    bulletMethod('devices', 'GET',data, makeBulletCallback((err, data) => console.dir(data)));
+  };
+
+  /*
+  * Send out an SMS
+  */
+  _this.sendSMS = function(data, callback) {
+    bulletMethod('ephemerals', 'POST', data, makeBulletCallback(
+      callback)); // TODO: Revise callback
   };
 
 };

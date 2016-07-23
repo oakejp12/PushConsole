@@ -1,3 +1,4 @@
+const config = require('./config');
 const pushbullet = require('./pushbullet');
 const client = new pushbullet.PushbulletClient();
 
@@ -35,8 +36,8 @@ var pushSMS = {
     "conversation_iden": "+1 " + argv.p,
     "message": argv.m,
     "package_name": "com.pushbullet.android",
-    "source_user_iden": "ujyYKqvyziC",
-    "target_device_iden": "ujyYKqvyziCsjAsoeMFET6",
+    "source_user_iden": config.auth.source_user_iden,
+    "target_device_iden": config.auth.target_device_iden,
     "type": "messaging_extension_reply"
   },
   "type": "push"

@@ -15,9 +15,9 @@ Example config.js file:
 ```
 module.exports = {
   "auth" : {
-    "access_token" : "o.mO5JTOjR7g3ztyTdcHE9KVQiUAJoOfQk",
-    "source_user_iden": "ujyYKqvyziC",
-    "target_device_iden": "ujyYKqvyziCsjAsoeMFET6"
+    "access_token" : "o.mO5JTOjRdsfgdfgdsfgKVQiUAJoOfQk",
+    "source_user_iden": "ugfdsfgyziC",
+    "target_device_iden": "ujyfddfgdfgdfgET6"
   }
 }
 ```

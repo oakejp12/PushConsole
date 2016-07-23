@@ -2,7 +2,6 @@
 * @author Johan Oakes
 * Application to send message from phone by way of console
 */
-
 const PUSHBULLET_API =  'https://api.pushbullet.com/v2/';
 const request = require('request');
 const config = require('./config');
@@ -17,7 +16,7 @@ function PushbulletClient() {
   var _this = this;
 
   // The current profile's user id
-  this.userID = null;
+  _this.userID = null;
 
   /*
   * Helper for getting the request object
@@ -45,7 +44,7 @@ function PushbulletClient() {
   * @param {Object} data an object of extra values
   * @param {Function} callback the callback to invoke when the req completes
   */
-  var tinderGet = function(path, data, callback) {
+  var bulletGet = function(path, data, callback) {
     var opts = getRequestOptions(path, data);
     opts.method = 'GET';
     request(opts, callback);
@@ -55,7 +54,7 @@ function PushbulletClient() {
   * Helper for transforming the request callback values
   * @param {Function} callback the callback to invoke when req completes
   */
-  var makeTinderCallback = function(callback) {
+  var makeBulletCallback = function(callback) {
     return function(err, res, body) {
       var data = null;
 
@@ -63,6 +62,7 @@ function PushbulletClient() {
         if (typeof body === "string") {
           try {
             data = JSON.parse(body);
+            // console.dir(data);
           } catch (err) {
             // TODO : Catch the error
           }
@@ -81,7 +81,7 @@ function PushbulletClient() {
   *
   */
   _this.getUser = function(data, callback) {
-    tinderGet('users/me', console.dir(data));
+    bulletGet('users/me', data, makeBulletCallback((err, data) => console.dir(data)));
   };
 
 };

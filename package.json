@@ -4,7 +4,8 @@
   "description": "Command Line Application to utilize Pushbullet API - send text message out of console",
   "main": "index.js",
   "dependencies": {
-    "request": "^2.73.0"
+    "request": "^2.73.0",
+    "yargs": "^4.8.1"
   },
   "devDependencies": {},
   "scripts": {

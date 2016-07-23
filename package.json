@@ -1,0 +1,23 @@
+{
+  "name": "push_console",
+  "version": "1.0.0",
+  "description": "Command Line Application to utilize Pushbullet API - send text message out of console",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.73.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oakejp12/PushConsole.git"
+  },
+  "author": "Johan Oakes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oakejp12/PushConsole/issues"
+  },
+  "homepage": "https://github.com/oakejp12/PushConsole#readme"
+}

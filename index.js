@@ -1,7 +1,22 @@
 const pushbullet = require('./pushbullet');
 const client = new pushbullet.PushbulletClient();
 
-console.log("Starting the Pushbullet client!");
+console.log("Starting the Pushbullet client!\n");
+
+
+// Parses the arguments and sets requirements
+var argv = require('yargs')
+  .usage('Trying to send a message?\nUsage: $0 -p <phone number> -m <message>')
+  .alias('p', 'phone')
+  .describe('p', 'Send to phone number')
+  .alias('m', 'message')
+  .describe('m', 'Send this message')
+  .demand(['p', 'm'])
+  .help('h')
+  .alias('h', 'help')
+  .example('$0 -p "335 596 2234" -m "Hey!"')
+  .epilog('Johan Oakes 2016 - Pushbullet')
+  .argv;
 
 /*
 * Pushbullet client makes a request for user data
@@ -17,8 +32,8 @@ console.log("Starting the Pushbullet client!");
 // Pushbullet API
 var pushSMS = {
   "push": {
-    "conversation_iden": "+1 336 596 9718",
-    "message": "Test 1, 2, 3!",
+    "conversation_iden": "+1 " + argv.p,
+    "message": argv.m,
     "package_name": "com.pushbullet.android",
     "source_user_iden": "ujyYKqvyziC",
     "target_device_iden": "ujyYKqvyziCsjAsoeMFET6",
@@ -28,12 +43,8 @@ var pushSMS = {
 }
 
 /*
-* TODO: Develop a function that takes command line arguments
-* and adds them to pushSMS
-*/
-
-
-/*
 * Send out a SMS
+* @param {Object} pushSMS JSON object that holds info to send SMS
+* @param {Function} callback sends success message
 */
 client.sendSMS(pushSMS, console.log("Message sent succesfully!"));

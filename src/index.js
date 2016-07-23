@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../config');
 const pushbullet = require('./pushbullet');
 const client = new pushbullet.PushbulletClient();
 

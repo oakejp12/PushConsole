@@ -4,7 +4,7 @@
 */
 const PUSHBULLET_API =  'https://api.pushbullet.com/v2/';
 const request = require('request');
-const config = require('./config');
+const config = require('../config');
 
 /*
 * Constructs a new instance of the Pushbullet Client

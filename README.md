@@ -1,7 +1,7 @@
 # PushConsole
 ##### Send text messages from a registered device to any number using the Pushbullet API
 
-![Use](https://github.com/oakejp12/PushConsole/blob/master/PushConsoleExample.PNG)
+![Use](https://github.com/oakejp12/PushConsole/blob/master/PushConsoleEx.PNG)
 
 ### Use
 Send a message to (555) 555-5555:

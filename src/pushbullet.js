@@ -78,6 +78,7 @@ function PushbulletClient() {
   * Gets the current users
   * @param {Object} data
   * @param {Function} callback
+  * TODO: Revise callback
   */
   _this.getUser = function(data, callback) {
     bulletMethod('users/me', 'GET', data, makeBulletCallback((err, data) => console.dir(data)));
@@ -87,6 +88,7 @@ function PushbulletClient() {
   * Get a list of chats belonging to the current user
   * @param {Object} data
   * @param {Function} callback callback to invoke when req completes
+  * TODO: Revise callback
   */
   _this.getDevicesList = function(data, callback) {
     bulletMethod('devices', 'GET',data, makeBulletCallback((err, data) => console.dir(data)));
@@ -97,7 +99,7 @@ function PushbulletClient() {
   */
   _this.sendSMS = function(data, callback) {
     bulletMethod('ephemerals', 'POST', data, makeBulletCallback(
-      callback)); // TODO: Revise callback
+      callback));
   };
 
 };

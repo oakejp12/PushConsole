@@ -24,6 +24,5 @@ module.exports = {
 }
 ```
 
-The `source_user_iden` (your user identity) and `target_device_iden` (device sending out the messages) can both be found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/users/<me/devices>'`. Choose either `me` or `devices` to receive appropriate data.
+The `source_user_iden` (your user identity) and `target_device_iden` (device sending out the messages) can both be found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/users/me'` or `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/devices'`. Choose either `me` or `devices` to receive appropriate data.
 
-The 

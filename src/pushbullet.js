@@ -80,10 +80,11 @@ function PushbulletClient() {
   * Gets the current users
   * @param {Object} data"
   * @param {Function} callback
-  * TODO: Revise callback
   */
-  _this.getUser = function(data, callback) {
-    bulletMethod('users/me', 'GET', data, makeBulletCallback(callback));
+  _this.getUserIdentity = function(data) {
+    bulletMethod('users/me', 'GET', data, makeBulletCallback((err, data) =>
+      console.log(`Your user identity: ${data['iden']}`)
+    ));
   };
 
   /*
@@ -102,7 +103,6 @@ function PushbulletClient() {
   _this.sendSMS = function(data, callback) {
     bulletMethod('ephemerals', 'POST', data, makeBulletCallback(callback));
   };
-
-};
+}
 
 exports.PushbulletClient = PushbulletClient;

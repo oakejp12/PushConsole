@@ -2,7 +2,7 @@ const config = require('../config');
 const pushbullet = require('./pushbullet');
 const client = new pushbullet.PushbulletClient();
 
-console.log("Starting the Pushbullet client!\n");
+console.log("\nStarting the Pushbullet client!");
 
 
 // Parses the arguments and sets requirements
@@ -21,8 +21,9 @@ var argv = require('yargs')
 
 /*
 * Pushbullet client makes a request for user data
+* TODO: Set this to a string variable so we can pass it to pushSMS
 */
-// client.getUser(() => console.dir(data));
+client.getUserIdentity();
 
 /*
 * Pushbullet client requests list of chats
@@ -41,11 +42,11 @@ var pushSMS = {
     "type": "messaging_extension_reply"
   },
   "type": "push"
-}
+};
 
 /*
 * Send out a SMS
 * @param {Object} pushSMS JSON object that holds info to send SMS
 * @param {Function} callback sends success message
 */
-client.sendSMS(pushSMS, console.log("Message sent succesfully!"));
+// client.sendSMS(pushSMS, console.log("Message sent succesfully!"));

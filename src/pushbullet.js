@@ -30,7 +30,7 @@ function PushbulletClient() {
 
     var headers = {
       'Access-Token' : config.auth.access_token
-    }
+    };
 
     options.headers = headers;
 
@@ -63,9 +63,11 @@ function PushbulletClient() {
           try {
             data = JSON.parse(body);
           } catch (err) {
-            // TODO : Catch the error
+            return console.error(err);
           }
         } else if (typeof body === "object") data = body;
+      } else {
+        console.log("Error in trying to parse data in callback function");
       }
       if (callback) {
         callback(err, data);
@@ -76,12 +78,12 @@ function PushbulletClient() {
 
   /*
   * Gets the current users
-  * @param {Object} data
+  * @param {Object} data"
   * @param {Function} callback
   * TODO: Revise callback
   */
   _this.getUser = function(data, callback) {
-    bulletMethod('users/me', 'GET', data, makeBulletCallback((err, data) => console.dir(data)));
+    bulletMethod('users/me', 'GET', data, makeBulletCallback(callback));
   };
 
   /*
@@ -91,15 +93,14 @@ function PushbulletClient() {
   * TODO: Revise callback
   */
   _this.getDevicesList = function(data, callback) {
-    bulletMethod('devices', 'GET',data, makeBulletCallback((err, data) => console.dir(data)));
+    bulletMethod('devices', 'GET',data, makeBulletCallback(callback));
   };
 
   /*
   * Send out an SMS
   */
   _this.sendSMS = function(data, callback) {
-    bulletMethod('ephemerals', 'POST', data, makeBulletCallback(
-      callback));
+    bulletMethod('ephemerals', 'POST', data, makeBulletCallback(callback));
   };
 
 };

@@ -1,2 +1,8 @@
+# Config file for app personalization
 config.js
+
+# Dependency modules
 node_modules
+
+# IntelliJ crap
+.idea/

@@ -17,11 +17,13 @@ Example config.js file:
 ```
 module.exports = {
   "auth" : {
-    "access_token" : "o.mO5JTOjRdsfgdfgdsfgKVQiUAJoOfQk",
-    "source_user_iden": "ugfdsfgyziC",
-    "target_device_iden": "ujyfddfgdfgdfgET6"
+    "access_token" : "<your-access-token>",
+    "source_user_iden": "<user-identity>",
+    "target_device_iden": "<target-device-sending-message>"
   }
 }
 ```
 
-The `source_user_iden` and `target_device_iden ` can both be found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/users/<me/devices>'`. Choose either `me` or `devices` to receive appropriate data.
+The `source_user_iden` (your user identity) and `target_device_iden` (device sending out the messages) can both be found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/users/<me/devices>'`. Choose either `me` or `devices` to receive appropriate data.
+
+The 

@@ -27,5 +27,5 @@ module.exports = {
 }
 ```
 
-The `target_device_iden` (device sending out the messages) canbe found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/devices'`. You'll receive a JSON response with a list of devices that are signed up to use Pushbullet. Select one of the device's identities as your target device. 
+The `target_device_iden` (device sending out the messages) can be found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/devices`. You'll receive a JSON response with a list of devices that are signed up to use Pushbullet. Select one of the device's identities as your target device. 
 

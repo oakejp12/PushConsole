@@ -23,7 +23,21 @@ var argv = require('yargs')
 * Pushbullet client makes a request for user data
 * TODO: Set this to a string variable so we can pass it to pushSMS
 */
-client.getUserIdentity();
+client.getUserIdentity(function (err, data) {
+  var pushSMS = {
+    "push": {
+      "conversation_iden": "+1 " + argv.p,
+      "message": argv.m,
+      "package_name": "com.pushbullet.android",
+      "source_user_iden": data['iden'],
+      "target_device_iden": config.auth.target_device_iden,
+      "type": "messaging_extension_reply"
+    },
+    "type": "push"
+  };
+
+  client.sendSMS(pushSMS, console.log("Message sent successfully!"));
+});
 
 /*
 * Pushbullet client requests list of chats
@@ -32,17 +46,17 @@ client.getUserIdentity();
 
 // Object that holds data in order to push SMS from
 // Pushbullet API
-var pushSMS = {
-  "push": {
-    "conversation_iden": "+1 " + argv.p,
-    "message": argv.m,
-    "package_name": "com.pushbullet.android",
-    "source_user_iden": config.auth.source_user_iden,
-    "target_device_iden": config.auth.target_device_iden,
-    "type": "messaging_extension_reply"
-  },
-  "type": "push"
-};
+// var pushSMS = {
+//   "push": {
+//     "conversation_iden": "+1 " + argv.p,
+//     "message": argv.m,
+//     "package_name": "com.pushbullet.android",
+//     "source_user_iden": config.auth.source_user_iden,
+//     "target_device_iden": config.auth.target_device_iden,
+//     "type": "messaging_extension_reply"
+//   },
+//   "type": "push"
+// };
 
 /*
 * Send out a SMS

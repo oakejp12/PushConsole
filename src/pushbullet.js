@@ -14,9 +14,6 @@ const config = require('../config');
 function PushbulletClient() {
   const _this = this;
 
-  // The current profile's user id
-  _this.userID = null;
-
   /*
   * Helper for getting the request object
   * @param path {String} path the relative URI path
@@ -54,7 +51,7 @@ function PushbulletClient() {
   * Helper for transforming the request callback values
   * @param {Function} callback the callback to invoke when req completes
   */
-  var makeBulletCallback = function(callback) {
+  function makeBulletCallback(callback) {
     return function(err, res, body) {
       var data = null;
 
@@ -73,17 +70,17 @@ function PushbulletClient() {
         callback(err, data);
       }
     };
-  };
+  }
 
 
   /*
   * Gets the current users
-  * @param {Object} data"
+  * @param {Object} data
   * @param {Function} callback
   */
-  _this.getUserIdentity = function(data) {
-    bulletMethod('users/me', 'GET', data, makeBulletCallback((err, data) =>
-      console.log(`Your user identity: ${data['iden']}`)
+  _this.getUserIdentity = function(callback) {
+    bulletMethod('users/me', 'GET', null, makeBulletCallback((err, data) =>
+      callback(err, data)
     ));
   };
 
@@ -105,4 +102,18 @@ function PushbulletClient() {
   };
 }
 
+/*
+* Small assert utility
+* @param condition
+* @param message
+ */
+function assert(condition, message) {
+  if (!condition) {
+    message = message || "Assertion Failed.";
+    if (typeof Error != "undefined") throw new Error(message);
+    throw message;
+  }
+}
+
 exports.PushbulletClient = PushbulletClient;
+

@@ -88,10 +88,9 @@ function PushbulletClient() {
   * Get a list of chats belonging to the current user
   * @param {Object} data
   * @param {Function} callback callback to invoke when req completes
-  * TODO: Revise callback
   */
-  _this.getDevicesList = function(data, callback) {
-    bulletMethod('devices', 'GET',data, makeBulletCallback(callback));
+  _this.getDevicesList = function(callback) {
+    bulletMethod('devices', 'GET', null, makeBulletCallback(callback));
   };
 
   /*

@@ -20,10 +20,12 @@ var argv = require('yargs')
   .argv;
 
 /*
-* Pushbullet client makes a request for user data
-* TODO: Set this to a string variable so we can pass it to pushSMS
+* Pushbullet client makes a request for user data and
+* passes the data to a callback function that initiates SMS
 */
 client.getUserIdentity(function (err, data) {
+  // Object that holds data so that Pushbullet
+  // knows how to configure the SMS
   var pushSMS = {
     "push": {
       "conversation_iden": "+1 " + argv.p,
@@ -36,31 +38,16 @@ client.getUserIdentity(function (err, data) {
     "type": "push"
   };
 
+  /*
+  * Send out a SMS
+  * @param {Object} pushSMS JSON object that holds info to send SMS
+  * @param {Function} callback sends success message
+  */
   client.sendSMS(pushSMS, console.log("Message sent successfully!"));
 });
+
 
 /*
 * Pushbullet client requests list of chats
 */
-// client.getDevicesList(() => console.dir(data));
-
-// Object that holds data in order to push SMS from
-// Pushbullet API
-// var pushSMS = {
-//   "push": {
-//     "conversation_iden": "+1 " + argv.p,
-//     "message": argv.m,
-//     "package_name": "com.pushbullet.android",
-//     "source_user_iden": config.auth.source_user_iden,
-//     "target_device_iden": config.auth.target_device_iden,
-//     "type": "messaging_extension_reply"
-//   },
-//   "type": "push"
-// };
-
-/*
-* Send out a SMS
-* @param {Object} pushSMS JSON object that holds info to send SMS
-* @param {Function} callback sends success message
-*/
-// client.sendSMS(pushSMS, console.log("Message sent succesfully!"));
+// client.getDevicesList((err, data) => console.dir(data));

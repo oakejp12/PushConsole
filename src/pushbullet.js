@@ -2,7 +2,7 @@
 * @author Johan Oakes
 * Application to send message from phone by way of console
 */
-const PUSHBULLET_API =  'https://api.pushbullet.com/v2/';
+const PUSHBULLET_API = 'https://api.pushbullet.com/v2/';
 const request = require('request');
 const config = require('../config');
 
@@ -11,7 +11,7 @@ const config = require('../config');
 * @constructor
 * @this {Pushbullet Client}
 */
-function PushbulletClient() {
+function PushbulletClient () {
   const _this = this;
 
   /*
@@ -19,14 +19,14 @@ function PushbulletClient() {
   * @param path {String} path the relative URI path
   * @param data {Object} data an object of extra values
   */
-  var getRequestOptions = function(path, data) {
+  var getRequestOptions = function (path, data) {
     var options = {
       url: PUSHBULLET_API + path,
       json: data
     };
 
     var headers = {
-      'Access-Token' : config.auth.access_token
+      'Access-Token': config.auth.access_token
     };
 
     options.headers = headers;
@@ -41,30 +41,30 @@ function PushbulletClient() {
   * @param {Object} data an object of extra values
   * @param {Function} callback the callback to invoke when the req completes
   */
-  var bulletMethod = function(path, method, data, callback) {
+  function bulletMethod (path, method, data, callback) {
     var opts = getRequestOptions(path, data);
     opts.method = method;
     request(opts, callback);
-  };
+  }
 
   /*
   * Helper for transforming the request callback values
   * @param {Function} callback the callback to invoke when req completes
   */
-  function makeBulletCallback(callback) {
-    return function(err, res, body) {
+  function makeBulletCallback (callback) {
+    return function (err, res, body) {
       var data = null;
 
-      if(!err) {
-        if (typeof body === "string") {
+      if (!err) {
+        if (typeof body === 'string') {
           try {
             data = JSON.parse(body);
           } catch (err) {
             return console.error(err);
           }
-        } else if (typeof body === "object") data = body;
+        } else if (typeof body === 'object') data = body;
       } else {
-        console.log("Error in trying to parse data in callback function");
+        console.log('Error in trying to parse data in callback function');
       }
       if (callback) {
         callback(err, data);
@@ -72,13 +72,12 @@ function PushbulletClient() {
     };
   }
 
-
   /*
   * Gets the current users
   * @param {Object} data
   * @param {Function} callback
   */
-  _this.getUserIdentity = function(callback) {
+  _this.getUserIdentity = function (callback) {
     bulletMethod('users/me', 'GET', null, makeBulletCallback((err, data) =>
       callback(err, data)
     ));
@@ -89,14 +88,14 @@ function PushbulletClient() {
   * @param {Object} data
   * @param {Function} callback callback to invoke when req completes
   */
-  _this.getDevicesList = function(callback) {
+  _this.getDevicesList = function (callback) {
     bulletMethod('devices', 'GET', null, makeBulletCallback(callback));
   };
 
   /*
   * Send out an SMS
   */
-  _this.sendSMS = function(data, callback) {
+  _this.sendSMS = function (data, callback) {
     bulletMethod('ephemerals', 'POST', data, makeBulletCallback(callback));
   };
 }
@@ -106,10 +105,10 @@ function PushbulletClient() {
 * @param condition
 * @param message
  */
-function assert(condition, message) {
+function assert (condition, message) {
   if (!condition) {
-    message = message || "Assertion Failed.";
-    if (typeof Error != "undefined") throw new Error(message);
+    message = message || 'Assertion Failed.';
+    if (typeof Error !== 'undefined') throw new Error(message);
     throw message;
   }
 }

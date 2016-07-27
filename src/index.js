@@ -1,9 +1,10 @@
+'use strict';
+
 const config = require('../config');
 const pushbullet = require('./pushbullet');
 const client = new pushbullet.PushbulletClient();
 
-console.log("\nStarting the Pushbullet client!");
-
+console.log('\nStarting the Pushbullet client!');
 
 // Parses the arguments and sets requirements
 var argv = require('yargs')
@@ -26,26 +27,27 @@ var argv = require('yargs')
 client.getUserIdentity(function (err, data) {
   // Object that holds data so that Pushbullet
   // knows how to configure the SMS
-  var pushSMS = {
-    "push": {
-      "conversation_iden": "+1 " + argv.p,
-      "message": argv.m,
-      "package_name": "com.pushbullet.android",
-      "source_user_iden": data['iden'],
-      "target_device_iden": config.auth.target_device_iden,
-      "type": "messaging_extension_reply"
-    },
-    "type": "push"
-  };
+  if (!err) {
+    var pushSMS = {
+      'push': {
+        'conversation_iden': `+1  ${argv.p}`,
+        'message': argv.m,
+        'package_name': 'com.pushbullet.android',
+        'source_user_iden': data['iden'],
+        'target_device_iden': config.auth.target_device_iden,
+        'type': 'messaging_extension_reply'
+      },
+      'type': 'push'
+    };
 
-  /*
-  * Send out a SMS
-  * @param {Object} pushSMS JSON object that holds info to send SMS
-  * @param {Function} callback sends success message
-  */
-  client.sendSMS(pushSMS, console.log("Message sent successfully!"));
+    /*
+     * Send out a SMS
+     * @param {Object} pushSMS JSON object that holds info to send SMS
+     * @param {Function} callback sends success message
+     */
+    client.sendSMS(pushSMS, console.log('Message sent successfully!'));
+  } else console.error(err);
 });
-
 
 /*
 * Pushbullet client requests list of chats

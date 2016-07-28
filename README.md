@@ -1,7 +1,7 @@
 ![Use](https://github.com/oakejp12/PushConsole/blob/master/PushConsoleEx.PNG)
 
 # PushConsole
-##### Send text messages from a registered device to any number using the Pushbullet API so that you don't have to break flow from using the command line. 
+#### Send text messages from a registered device to any number using the Pushbullet API so that you don't have to break flow from using the command line. 
 
 ### Use
 Clone the repository: `git clone https://github.com/oakejp12/PushConsole.git`

@@ -23,13 +23,13 @@ var argv = require('yargs')
   .argv;
 
 /*
+<<<<<<< HEAD
  * Pushbullet client requests list of chats
  */
 if (argv.d) {
   console.log('Devices:\n');
   client.getDevicesList((err, data) => console.dir(data['devices']));
 }
-
 
 /*
 * Pushbullet client makes a request for user data and

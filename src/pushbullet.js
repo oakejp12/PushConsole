@@ -19,13 +19,13 @@ function PushbulletClient () {
   * @param path {String} path the relative URI path
   * @param data {Object} data an object of extra values
   */
-  var getRequestOptions = function (path, data) {
-    var options = {
+  let getRequestOptions = function (path, data) {
+    let options = {
       url: PUSHBULLET_API + path,
       json: data
     };
 
-    var headers = {
+    let headers = {
       'Access-Token': config.auth.access_token
     };
 
@@ -42,7 +42,7 @@ function PushbulletClient () {
   * @param {Function} callback the callback to invoke when the req completes
   */
   function bulletMethod (path, method, data, callback) {
-    var opts = getRequestOptions(path, data);
+    let opts = getRequestOptions(path, data);
     opts.method = method;
     request(opts, callback);
   }
@@ -53,7 +53,7 @@ function PushbulletClient () {
   */
   function makeBulletCallback (callback) {
     return function (err, res, body) {
-      var data = null;
+      let data = null;
 
       if (!err) {
         if (typeof body === 'string') {

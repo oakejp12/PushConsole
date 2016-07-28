@@ -28,7 +28,7 @@ client.getUserIdentity(function (err, data) {
   // Object that holds data so that Pushbullet
   // knows how to configure the SMS
   if (!err) {
-    var pushSMS = {
+    let pushSMS = {
       'push': {
         'conversation_iden': `+1  ${argv.p}`,
         'message': argv.m,

@@ -6,6 +6,9 @@ const client = new pushbullet.PushbulletClient();
 
 console.log('\nStarting the Pushbullet client!');
 
+// TODO: Look at https://github.com/doberkofler/node_plsql/blob/master/lib/cli.js
+// TODO: for better command line styles
+
 // Parses the arguments and sets requirements
 var argv = require('yargs')
   .usage('Trying to send a message?\nUsage: $0 -p <phone number> -m <message>')

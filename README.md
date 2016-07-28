@@ -1,5 +1,7 @@
 ![Use](https://github.com/oakejp12/PushConsole/blob/master/PushConsoleEx.PNG)
 
+[![Known Vulnerabilities](https://snyk.io/test/github/oakejp12/pushconsole/badge.svg)](https://snyk.io/test/github/oakejp12/pushconsole)
+
 # PushConsole
 #### Send text messages from a registered device to any number using the Pushbullet API so that you don't have to break flow from using the command line. 
 

@@ -16,10 +16,10 @@ Send a message to (555) 555-5555 (do not put special characters in number):
 `node src/index.js -m "555 555 5555" -m "Hey, what's up?!"`
 
 ### Configuration
-- [ ] Establish an account on Pushbullet and register a device.
-- [ ] Make a `config.js` file in parent directory.
-- [ ] Retrieve access token from account settings.
-- [ ] Retrieve target device identity.
+1. Establish an account on Pushbullet and register a device.
+2. Make a `config.js` file in parent directory.
+3. Retrieve access token from account settings.
+4. Retrieve target device identity.
 
 Template for config.js file:
 ```
@@ -33,3 +33,9 @@ module.exports = {
 
 The `target_device_iden` (device sending out the messages) can be found by `curl --header 'Access-Token: <your-token>' https://api.pushbullet.com/v2/devices`. You'll receive a JSON response with a list of devices that are signed up to use Pushbullet. Select one of the device's identities as your target device. OR...you could run the application with the `-d` flag instead to view the devices listed on your account: `node src/index.js -d`. 
 
+### Roadmap 
+##### Includes a list of features I would like to implement
+- [ ] Create an executable named `pushconsole`
+- [ ] Integrate with Google Contacts API
+- [ ] Create argument flag to query phone number based on names (`pushconsole -m "Hey!" -p "Johan Oakes"`)
+- [ ] Clean up CLI code for safer, smarter use
